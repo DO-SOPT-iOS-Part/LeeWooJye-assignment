@@ -15,7 +15,7 @@ class timeline: UIView {
     init(time: String, weather: String, temperature: String) {
         self.weatherstatus = weather
         super.init(frame: .zero)
-        timelabel.text = "\(time)시"
+        timelabel.text = "\(time)"
         weatherimgmatch(weather: weather)
         temperaturelabel.text = "\(temperature)"
         setLayout()
@@ -53,33 +53,20 @@ class timeline: UIView {
         }
         
         NSLayoutConstraint.activate([
-            timelabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            timelabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -10),
             timelabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            weatherimg.topAnchor.constraint(equalTo: timelabel.bottomAnchor, constant: 10),
-            weatherimg.centerXAnchor.constraint(equalTo: timelabel.centerXAnchor)
+            weatherimg.topAnchor.constraint(equalTo: centerYAnchor),
+            weatherimg.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            temperaturelabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            temperaturelabel.centerXAnchor.constraint(equalTo: timelabel.centerXAnchor)
+            temperaturelabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 60),
+            temperaturelabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
-    
-//    private func weatherimgmatch(weather: String) -> String {
-//        switch (weather) {
-//        case "cloudy":
-//            return "frame1"
-//        case "sunny":
-//            return "frame2"
-//        case "rainy":
-//            return "frame3"
-//        default:
-//            return "frame4"
-//        }
-//    }
     
     private func weatherimgmatch(weather: String) {
         switch weather {

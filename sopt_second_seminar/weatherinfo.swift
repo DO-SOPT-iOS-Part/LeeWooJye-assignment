@@ -16,18 +16,9 @@ class weatherinfo: UIView {
     var Mintemp: String
     var Weather: String
     
-//    let tap = UITapGestureRecognizer(target: view, action: #selector(pushToDetailVC(_:))) // UIImageView 클릭 제스쳐
-//    self.addGestureRecognizer(tap)
-//    self.isUserInteractionEnabled = true
-//    @objc
-//    func pushToDetailVC(_ gesture: UITapGestureRecognizer) {
-//        let resultVC = SecondViewController()
-//        self.navigationController?.pushViewController(resultVC, animated: true)
-    
 // weatherinfo.swift파일에서는 push/pop을 할 수 없으니 weatherinfo는 클릭이라는 이벤트만 받고 push/pop처리는 viewcontroller.swift에서 해야한다..(?)
     
     init(location: String, weather: String, temperature: String, max: String, min:String) {
-        // super.init(frame: .zero)
         Location = location
         Temperature = temperature
         Maxtemp = "최고: \(max)"
@@ -35,7 +26,7 @@ class weatherinfo: UIView {
         Weather = weather
         super.init(frame: .zero)
         
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = 10
         self.setLayout()
         self.setupGestureRecognizers()
     }
@@ -45,7 +36,7 @@ class weatherinfo: UIView {
     }
     
     let backgroundimage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "backgroundimg"))
+        let imageView = UIImageView(image: UIImage(named: "elementviewimg"))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

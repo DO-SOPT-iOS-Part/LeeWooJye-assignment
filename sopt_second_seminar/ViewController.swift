@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, WeatherInfoViewDelegate {
     let newyork = weatherinfo(location: "newyork", weather: "cloudy", temperature: "20C", max: "25C", min: "15C")
+    // viewcontroller -> secondviewcontroller로 weather, temperature 전달해야함.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +25,18 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
             self.view.addSubview($0)
         }
         
-        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+        // safearea 고려해서 topAnchor 조정
+        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
                                      topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                                      topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     topview.heightAnchor.constraint(equalToConstant: 150)
+                                     topview.heightAnchor.constraint(equalToConstant: 190)
                                     ])
         
         // topview 안에 날씨라벨 + 검색바 + 설정버튼
-        topview.addSubview(searchbar)
-        searchbar.translatesAutoresizingMaskIntoConstraints = false
+        [searchbar, textlabelview, buttonview].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            topview.addSubview($0)
+        }
 
         // 검색바
         NSLayoutConstraint.activate([searchbar.leadingAnchor.constraint(equalTo: topview.leadingAnchor, constant: 0),
@@ -41,17 +45,13 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
                                      searchbar.heightAnchor.constraint(equalToConstant: 40)
                                     ])
         // 설정 버튼
-//        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-//                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-//                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-//                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
-//                                    ])
-        // 날짜 텍스트 필드
-//        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-//                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-//                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-//                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
-//                                    ])
+        NSLayoutConstraint.activate([buttonview.topAnchor.constraint(equalTo: topview.safeAreaLayoutGuide.topAnchor, constant: 0),
+                                     buttonview.trailingAnchor.constraint(equalTo: topview.trailingAnchor, constant: -10)
+                                    ])
+        // 날짜 라벨
+        NSLayoutConstraint.activate([textlabelview.leadingAnchor.constraint(equalTo: topview.leadingAnchor, constant: 20),
+                                     textlabelview.bottomAnchor.constraint(equalTo: searchbar.topAnchor, constant: -10)
+                                    ])
 
         NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: topview.bottomAnchor),
                                      scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -76,9 +76,9 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
         contentview.addSubview(stackview)
         stackview.translatesAutoresizingMaskIntoConstraints = false
         // self를 사용할 때와 사용하지 않을때?, contentLayoutGuide란?
-        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: contentview.topAnchor),
-                                     stackview.trailingAnchor.constraint(equalTo: contentview.trailingAnchor),
-                                     stackview.leadingAnchor.constraint(equalTo: contentview.leadingAnchor),
+        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: contentview.topAnchor, constant: 7),
+                                     stackview.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: -16),
+                                     stackview.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 16),
                                      stackview.bottomAnchor.constraint(equalTo: contentview.bottomAnchor)
                                     ])
         
@@ -103,6 +103,7 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
 //                                         $0.leadingAnchor.constraint(equalToConstant: 20),
 //                                         $0.heightAnchor.constraint(equalToConstant: 117)
 //                                        ])
+//            $0.delegate = self
 //            stackview.addArrangedSubview($0)
 //        }
     }
@@ -123,8 +124,27 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
     
     // 홈화면 상단바 생성자에 검색바 + 텍스트 '날씨' + 설정버튼 다 넣는법 OR setlayout()에서 세 요소 다 합치는 방법
     var topview: UIView = {
-        let view = UIView(frame: .init(origin: .zero, size: .init()))
+        let view = UIView()
+        view.backgroundColor = .black
+        
         return view
+    }()
+    
+    var buttonview: UIImageView = {
+        let button = UIImageView()
+        button.image = UIImage(named: "dots")
+        button.contentMode = .scaleAspectFit
+        
+        return button
+    }()
+    
+    var textlabelview: UILabel = {
+        let textlabel = UILabel()
+        textlabel.text = "날씨"
+        textlabel.textColor = .white
+        textlabel.font = UIFont(name: "SFProDisplay-Medium", size: 36)
+        
+        return textlabel
     }()
     
     var stackview: UIStackView = {

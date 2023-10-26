@@ -21,9 +21,7 @@ class SecondViewController: UIViewController {
         self.setBackgroundImage()
         self.setLayout()
     }
-    
-    // let timelinedetail = timeline(time: "1", weather: "cloudy", temperature: "25°")
-    
+        
     init(location: String, temperature: String, weather: String, maxtemp: String, mintemp: String) {
         // topview에 정보를 입력하기 위해 변수값 할당
         self.Location = location
@@ -43,12 +41,9 @@ class SecondViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
-                let timeline1 = timeline(time: "0시", weather: self.Weather, temperature: self.Temperature)
-//                detailview.addArrangedSubview(timeline1)
-//        timeline1.translatesAutoresizingMaskIntoConstraints = false
-//                NSLayoutConstraint.activate([timeline1.widthAnchor.constraint(equalToConstant: 60),
-//                                             timeline1.heightAnchor.constraint(equalTo: detailview.heightAnchor)
-//                                            ])
+        let timeline1 = timeline(time: "Now", weather: "cloudy", temperature: "18C")
+        // let timeline1 = timeline(time: "0", weather: self.Weather, temperature: self.Temperature)
+
         [timeline1].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             ($0.widthAnchor.constraint(equalToConstant: 65)).isActive = true
@@ -61,61 +56,63 @@ class SecondViewController: UIViewController {
         lineView.translatesAutoresizingMaskIntoConstraints = false
         scrollview2.translatesAutoresizingMaskIntoConstraints = false
         detailview.translatesAutoresizingMaskIntoConstraints = false
+        box.translatesAutoresizingMaskIntoConstraints = false
         
         // scrollview 하위뷰에 꼭 contentview가 와야하나? -> 노
         scrollview.addSubview(contentview)
-        contentview.addSubview(scrollview2)
+        box.addSubview(scrollview2)
         scrollview2.addSubview(detailview)
-        contentview.addSubview(lineView)
-        contentview.addSubview(descriptionView)
-        scrollview.addSubview(bottomview)
+        box.addSubview(lineView)
+        box.addSubview(descriptionView)
+        contentview.addSubview(box)
                 
-        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
                                      topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                                      topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
                                      topview.heightAnchor.constraint(equalToConstant: 212)
                                     ])
-        NSLayoutConstraint.activate([lineView.topAnchor.constraint(equalTo: scrollview.bottomAnchor, constant: 0),
-                                     lineView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                                     lineView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     lineView.heightAnchor.constraint(equalToConstant: 0.3)
+        NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: topview.bottomAnchor, constant: 0),
+                                     scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+                                     scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+                                     scrollview.bottomAnchor.constraint(equalTo: bottomview.topAnchor)
                                     ])
-        NSLayoutConstraint.activate([bottomview.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 0),
-                                     bottomview.bottomAnchor.constraint(equalTo: contentview.bottomAnchor, constant: 0),
-                                     bottomview.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 0),
-                                     bottomview.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: 0),
+        NSLayoutConstraint.activate([bottomview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
+                                     bottomview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+                                     bottomview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
                                      bottomview.heightAnchor.constraint(equalToConstant: 82)
                                     ])
-        NSLayoutConstraint.activate([contentview.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 0),
-                                     contentview.bottomAnchor.constraint(equalTo: scrollview.bottomAnchor, constant: 0),
-                                     contentview.leadingAnchor.constraint(equalTo: scrollview.leadingAnchor, constant: 0),
-                                     contentview.trailingAnchor.constraint(equalTo: scrollview.trailingAnchor, constant: 0)
+        NSLayoutConstraint.activate([contentview.topAnchor.constraint(equalTo: scrollview.contentLayoutGuide.topAnchor),
+                                     contentview.bottomAnchor.constraint(equalTo: scrollview.contentLayoutGuide.bottomAnchor),
+                                     contentview.heightAnchor.constraint(equalTo: scrollview.contentLayoutGuide.heightAnchor),
+                                     contentview.widthAnchor.constraint(equalTo: scrollview.widthAnchor),
+                                     contentview.leadingAnchor.constraint(equalTo: scrollview.contentLayoutGuide.leadingAnchor),
+                                     contentview.trailingAnchor.constraint(equalTo: scrollview.contentLayoutGuide.trailingAnchor)
                                     ])
-        NSLayoutConstraint.activate([descriptionView.topAnchor.constraint(equalTo: contentview.topAnchor, constant: 0),
-                                     descriptionView.heightAnchor.constraint(equalToConstant: 45),
-                                     descriptionView.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 0),
-                                     descriptionView.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: 0)
+        NSLayoutConstraint.activate([descriptionView.topAnchor.constraint(equalTo: box.topAnchor, constant: 8),
+                                     descriptionView.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 13),
+                                     descriptionView.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -13)
                                     ])
-        NSLayoutConstraint.activate([lineView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: 0),
+        NSLayoutConstraint.activate([lineView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: 10),
                                      lineView.heightAnchor.constraint(equalToConstant: 0.3),
-                                     lineView.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 0),
-                                     lineView.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: 0)
+                                     lineView.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 10),
+                                     lineView.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -10)
                                     ])
-        NSLayoutConstraint.activate([scrollview2.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 0),
-                                     scrollview2.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: 0),
-                                     scrollview2.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 0),
-                                     scrollview2.bottomAnchor.constraint(equalTo: contentview.bottomAnchor, constant: 0)
+        NSLayoutConstraint.activate([scrollview2.topAnchor.constraint(equalTo: lineView.bottomAnchor),
+                                     scrollview2.trailingAnchor.constraint(equalTo: box.trailingAnchor),
+                                     scrollview2.leadingAnchor.constraint(equalTo: box.leadingAnchor),
+                                     scrollview2.bottomAnchor.constraint(equalTo: box.bottomAnchor)
                                     ])
         NSLayoutConstraint.activate([detailview.topAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.topAnchor),
                                      detailview.trailingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.trailingAnchor),
                                      detailview.leadingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.leadingAnchor),
                                      detailview.bottomAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.bottomAnchor)
                                     ])
-//        NSLayoutConstraint.activate([timeline1.topAnchor.constraint(equalTo: detailview.topAnchor, constant: 0),
-//                                     timeline1.leadingAnchor.constraint(equalTo: detailview.leadingAnchor, constant: 0),
-//                                     timeline1.bottomAnchor.constraint(equalTo: detailview.bottomAnchor, constant: 0),
-//                                     timeline1.widthAnchor.constraint(equalToConstant: 60)
-//        ])
+        NSLayoutConstraint.activate([
+                                    box.topAnchor.constraint(equalTo: contentview.topAnchor, constant: 50),
+                                    box.leadingAnchor.constraint(equalTo: contentview.leadingAnchor, constant: 17),
+                                    box.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: -17),
+                                    box.heightAnchor.constraint(equalToConstant: 212)
+                                    ])
     }
     
     // 위치, 온도, 날씨, 최고최저기온으로 구성
@@ -162,12 +159,11 @@ class SecondViewController: UIViewController {
                                      weather.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         NSLayoutConstraint.activate([max.topAnchor.constraint(equalTo: weather.bottomAnchor, constant: 10),
-                                     max.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50)
+                                     max.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -3)
         ])
         NSLayoutConstraint.activate([min.topAnchor.constraint(equalTo: weather.bottomAnchor, constant: 10),
-                                     min.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 50)
+                                     min.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 3)
                                     ])
-        view.clipsToBounds = false
         return view
     }()
     
@@ -183,25 +179,27 @@ class SecondViewController: UIViewController {
     // 상세보기 박스에서 상단은 text뷰, 하단은 수평스크롤뷰 > 콘텐츠뷰 > 수평스택뷰 > 개별 UI뷰
     var contentview: UIView = {
         let view = UIView()
+//        view.layer.cornerRadius = 10
+//        view.layer.borderColor = UIColor.white.cgColor
+//        view.layer.borderWidth = 1
         return view
     }()
     
-    private let descriptionView: UIView = {
+    var box: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         view.layer.cornerRadius = 20
-        
+        return view
+    }()
+    
+    private let descriptionView: UILabel = {
         let label = UILabel()
         label.text = "08:00~09:00에 강우 상태가, 18:00에 한때 흐린 상태가 예상됩니다."
         label.numberOfLines = 0
         label.textColor = .white
         label.font = UIFont(name: "SFProDisplay-Regular", size: 17)
-        view.addSubview(label)
-        NSLayoutConstraint.activate([label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        
-        return view
+
+        return label
     }()
 
     private let lineView: UIView = {
@@ -238,7 +236,7 @@ class SecondViewController: UIViewController {
         
         // 설정 버튼
         let button = UIButton()
-        button.setImage(UIImage(named: "dots"), for: .normal)
+        button.setImage(UIImage(systemName: "listbar"), for: .normal)
         // 설정 버튼 눌리면 상세페이지 pop
         let tap = UITapGestureRecognizer(target: button, action: #selector(popDetailVC(_:)))
         view.addGestureRecognizer(tap)
@@ -246,19 +244,18 @@ class SecondViewController: UIViewController {
         
         // 지도 버튼
         let mapbutton = UIButton()
-        button.setImage(UIImage(named: "map"), for: .normal)
+        mapbutton.setImage(UIImage(systemName: "map"), for: .normal)
         // 화살표 버튼
         let arrow = UIButton()
-        arrow.setImage(UIImage(named: "arrow"), for: .normal)
+        arrow.setImage(UIImage(systemName: "arrow"), for: .normal)
         // 점 하나 버튼
         let dot = UIButton()
-        dot.setImage(UIImage(named: "dot"), for: .normal)
+        dot.setImage(UIImage(systemName: "dot"), for: .normal)
         
         [button, mapbutton, arrow, dot].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
-        
         NSLayoutConstraint.activate([button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
                                     ])
@@ -266,12 +263,11 @@ class SecondViewController: UIViewController {
                                      mapbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
                                     ])
         NSLayoutConstraint.activate([arrow.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     arrow.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 160)
+                                     arrow.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10)
                                     ])
         NSLayoutConstraint.activate([dot.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     dot.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 190)
+                                     dot.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10)
                                     ])
-        
         return view
     }()
     

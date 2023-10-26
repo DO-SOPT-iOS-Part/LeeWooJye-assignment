@@ -8,8 +8,13 @@
 
 import UIKit
 
-class weatherinfo: UIImageView {
+class weatherinfo: UIView {
     weak var delegate: WeatherInfoViewDelegate?
+    var Location: String
+    var Temperature: String
+    var Maxtemp: String
+    var Mintemp: String
+    var Weather: String
     
 //    let tap = UITapGestureRecognizer(target: view, action: #selector(pushToDetailVC(_:))) // UIImageView 클릭 제스쳐
 //    self.addGestureRecognizer(tap)
@@ -22,17 +27,14 @@ class weatherinfo: UIImageView {
 // weatherinfo.swift파일에서는 push/pop을 할 수 없으니 weatherinfo는 클릭이라는 이벤트만 받고 push/pop처리는 viewcontroller.swift에서 해야한다..(?)
     
     init(location: String, weather: String, temperature: String, max: String, min:String) {
+        // super.init(frame: .zero)
+        Location = location
+        Temperature = temperature
+        Maxtemp = "최고: \(max)"
+        Mintemp = "최저: \(min)"
+        Weather = weather
         super.init(frame: .zero)
-        locationlabel.text = "\(location)"
-        // weatherimg(weather: weather)
-        temperaturelabel.text = "\(temperature)"
-        maxtemp.text = "\(max)"
-        mintemp.text = "\(min)"
-        weatherlabel.text = "\(weather)"
         
-        self.image = UIImage(named: "elementviewimg")
-        self.contentMode = .scaleAspectFit
-        self.backgroundColor = .black
         self.layer.cornerRadius = 20
         self.setLayout()
         self.setupGestureRecognizers()
@@ -42,14 +44,21 @@ class weatherinfo: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let locationlabel: UILabel = {
+    let backgroundimage: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "backgroundimg"))
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    lazy var locationlabel: UILabel = {
         let location = UILabel()
         location.textColor = .white
+        location.text = self.Location
         location.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         return location
     }()
     
-    let mylocation: UILabel = {
+    lazy var mylocation: UILabel = {
         let mylocation = UILabel()
         mylocation.text = "나의 위치"
         mylocation.textColor = .white
@@ -57,39 +66,50 @@ class weatherinfo: UIImageView {
         return mylocation
     }()
     
-    let temperaturelabel: UILabel = {
+    lazy var temperaturelabel: UILabel = {
         let temperature = UILabel()
         temperature.textColor = .white
+        temperature.text = self.Temperature
         temperature.font = UIFont(name: "SFProDisplay-Medium", size: 52)
         return temperature
     }()
     
-    let maxtemp: UILabel = {
+    lazy var maxtemp: UILabel = {
         let maxtemp = UILabel()
         maxtemp.textColor = .white
+        maxtemp.text = self.Maxtemp
         maxtemp.font = UIFont(name: "SFProDisplay-Medium", size: 15)
         return maxtemp
     }()
     
-    let mintemp: UILabel = {
+    lazy var mintemp: UILabel = {
         let mintemp = UILabel()
         mintemp.textColor = .white
+        mintemp.text = self.Mintemp
         mintemp.font = UIFont(name: "SFProDisplay-Medium", size: 15)
         return mintemp
     }()
     
-    let weatherlabel: UILabel = {
+    lazy var weatherlabel: UILabel = {
         let weather = UILabel()
         weather.textColor = .white
+        weather.text = self.Weather
         weather.font = UIFont(name: "SFProDisplay-Medium", size: 16)
         return weather
     }()
     
     private func setLayout() {
-        [mylocation, locationlabel, weatherlabel, temperaturelabel, maxtemp, mintemp].forEach {
+        [backgroundimage, mylocation, locationlabel, weatherlabel, temperaturelabel, maxtemp, mintemp].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0) // 라벨들이 들어갈 전체뷰(?)는 따로 선언하지 않아도 되는지?
         }
+        
+        NSLayoutConstraint.activate([
+            backgroundimage.topAnchor.constraint(equalTo: topAnchor),
+            backgroundimage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundimage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundimage.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         NSLayoutConstraint.activate([
             mylocation.topAnchor.constraint(equalTo: topAnchor, constant: 7),
@@ -102,7 +122,7 @@ class weatherinfo: UIImageView {
         ])
         
         NSLayoutConstraint.activate([
-            weatherlabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
+            weatherlabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7), // 음수??
             weatherlabel.leadingAnchor.constraint(equalTo: mylocation
                 .leadingAnchor)
         ])
@@ -129,8 +149,8 @@ class weatherinfo: UIImageView {
         self.addGestureRecognizer(tapGesture)
     }
     
+    // 박스클릭에 대한 화면전환은 viewcontroller가 수행
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         delegate?.weatherInfoViewTapped(self)
     }
-
 }

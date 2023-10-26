@@ -15,7 +15,6 @@ class timeline: UIView {
     init(time: String, weather: String, temperature: String) {
         self.weatherstatus = weather
         super.init(frame: .zero)
-        
         timelabel.text = "\(time)시"
         weatherimgmatch(weather: weather)
         temperaturelabel.text = "\(temperature)"
@@ -69,17 +68,33 @@ class timeline: UIView {
         ])
     }
     
-    private func weatherimgmatch(weather: String) -> String {
-        switch (weather) {
+//    private func weatherimgmatch(weather: String) -> String {
+//        switch (weather) {
+//        case "cloudy":
+//            return "frame1"
+//        case "sunny":
+//            return "frame2"
+//        case "rainy":
+//            return "frame3"
+//        default:
+//            return "frame4"
+//        }
+//    }
+    
+    private func weatherimgmatch(weather: String) {
+        switch weather {
         case "cloudy":
-            return "frame1"
-        case "sunny":
-            return "frame2"
-        case "rainy":
-            return "frame3"
+            weatherimg.image = UIImage(named: "cloudy")
+        case "heavyrain":
+            weatherimg.image = UIImage(named: "heavyrain")
+        case "rainysunny":
+            weatherimg.image = UIImage(named: "rainysunny")
+        case "rain":
+            weatherimg.image = UIImage(named: "rain")
+        case "thunder":
+            weatherimg.image = UIImage(named: "thunder")
         default:
-            return "frame4"
+            weatherimg.image = UIImage(named: "cloudy")
         }
     }
-    
 }

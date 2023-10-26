@@ -54,7 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // root view controller 지정
             let rootViewController = ViewController()
-            let viewcontroller1 = SecondViewController()
+            // let viewcontroller1 = SecondViewController()
+        
             // 네비게이션 컨트롤러 생성
             let navigationController = UINavigationController(rootViewController: rootViewController)
             window?.rootViewController = navigationController

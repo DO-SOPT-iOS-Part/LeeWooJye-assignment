@@ -13,7 +13,6 @@ protocol WeatherInfoViewDelegate: AnyObject {
 
 protocol labelset: AnyObject {
     var location: String {get set}
-    var mylocation: String {get set}
     var temperature: String {get set}
     var maxtemp: String {get set}
     var mintemp: String {get set}

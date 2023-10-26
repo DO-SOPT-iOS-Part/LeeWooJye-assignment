@@ -9,20 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController, WeatherInfoViewDelegate {
+    let newyork = weatherinfo(location: "newyork", weather: "cloudy", temperature: "20C", max: "25C", min: "15C")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .black
         self.navigationItem.title = "ViewController" // 네비게이션 컨트롤러 입장에서 구분할 수 있게 이름 부여
         self.setLayout()
     }
     
     private func setLayout() {
-        [topview, scrollview].forEach{ [weak self] view in
-            guard let self else {return}
-            view.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(view)
+        [topview, scrollview].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview($0)
         }
+        
         scrollview.addSubview(contentview)
         contentview.translatesAutoresizingMaskIntoConstraints = false
         
@@ -32,32 +33,33 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
                                      topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
                                     ])
         
+        // topview 안에 날씨라벨 + 검색바 + 설정버튼
         topview.addSubview(searchbar)
         searchbar.translatesAutoresizingMaskIntoConstraints = false
 
         // 검색바
-        NSLayoutConstraint.activate([searchbar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-                                     searchbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                                     searchbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     searchbar.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
+        NSLayoutConstraint.activate([searchbar.leadingAnchor.constraint(equalTo: topview.leadingAnchor, constant: 0),
+                                     searchbar.trailingAnchor.constraint(equalTo: topview.trailingAnchor, constant: 0),
+                                     searchbar.bottomAnchor.constraint(equalTo: topview.bottomAnchor, constant: 0),
+                                     searchbar.heightAnchor.constraint(equalToConstant: 40)
                                     ])
         // 설정 버튼
-        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
-                                    ])
+//        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+//                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+//                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+//                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
+//                                    ])
         // 날짜 텍스트 필드
-        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
-                                    ])
+//        NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+//                                     topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+//                                     topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+//                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
+//                                    ])
 
-        NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: self.topview.bottomAnchor, constant: 0),
-                                     scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
-                                     scrollview.heightAnchor.constraint(equalTo: self.contentview.widthAnchor)
+        NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: topview.bottomAnchor),
+                                     scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                                     scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                                     scrollview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
                                     ])
         
         // contentview 높이를 scrollview 높이에 맞춰줌
@@ -67,93 +69,99 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
                                      contentview.bottomAnchor.constraint(equalTo: scrollview.contentLayoutGuide.bottomAnchor)
                                     ])
         
-        contentview.widthAnchor.constraint(equalTo: scrollview.widthAnchor).isActive = true
-        let contentViewHeight = contentview.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
-        contentViewHeight.priority = .defaultLow
-        contentViewHeight.isActive = true
+//        contentview.widthAnchor.constraint(equalTo: scrollview.widthAnchor).isActive = true
+//        let contentViewHeight = contentview.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
+//        contentViewHeight.priority = .defaultLow
+//        contentViewHeight.isActive = true
         
         contentview.addSubview(stackview)
         stackview.translatesAutoresizingMaskIntoConstraints = false
         
         // self를 사용할 때와 사용하지 않을때?, contentLayoutGuide란?
-        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: self.contentview.bottomAnchor, constant: 0),
-                                     stackview.trailingAnchor.constraint(equalTo: self.contentview.trailingAnchor, constant: 0),
-                                     stackview.leadingAnchor.constraint(equalTo: self.contentview.leadingAnchor, constant: 0),
+        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: self.contentview.bottomAnchor),
+                                     stackview.trailingAnchor.constraint(equalTo: self.contentview.trailingAnchor),
+                                     stackview.leadingAnchor.constraint(equalTo: self.contentview.leadingAnchor),
                                      stackview.heightAnchor.constraint(equalTo: self.contentview.heightAnchor)
                                     ])
         
-        stackview.addArrangedSubview(elementview) // 엘리먼트 뷰를 스택뷰 안에 넣어준다. 스택 뷰 안에 요소를 삽입할 땐 addArrangedSubview()를 이용한다.
+        //        stackview.addArrangedSubview(newyork)
+//        NSLayoutConstraint.activate([newyork.topAnchor.constraint(equalTo: self.stackview.bottomAnchor, constant: 10),
+//                                     newyork.trailingAnchor.constraint(equalTo: self.stackview.trailingAnchor, constant: 20),
+//                                     newyork.leadingAnchor.constraint(equalTo: self.stackview.leadingAnchor, constant: 20),
+//                                     newyork.heightAnchor.constraint(equalToConstant: 117)
+//                                    ])
         
-        NSLayoutConstraint.activate([elementview.topAnchor.constraint(equalTo: self.stackview.bottomAnchor, constant: 10),
-                                     elementview.trailingAnchor.constraint(equalTo: self.stackview.trailingAnchor, constant: 10),
-                                     elementview.leadingAnchor.constraint(equalTo: self.stackview.leadingAnchor, constant: 10),
-                                     elementview.heightAnchor.constraint(equalToConstant: 40)
-                                    ])
-        
-        // 방콕, 뉴욕, 한국 날씨를 차례대로 스택뷰에 넣어줌.
-        [elementview].forEach {
+        [newyork].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([$0.trailingAnchor.constraint(equalToConstant: 20),
-                                         $0.leadingAnchor.constraint(equalToConstant: 20),
-                                         $0.heightAnchor.constraint(equalToConstant: 117)
-                                        ])
+            ($0.heightAnchor.constraint(equalToConstant: 120)).isActive = true
+            $0.delegate = self
             stackview.addArrangedSubview($0)
         }
         
+        // 방콕, 뉴욕, 한국 날씨를 차례대로 스택뷰에 넣어줌.
+//        [newyork].forEach {
+//            $0.translatesAutoresizingMaskIntoConstraints = false
+//            NSLayoutConstraint.activate([$0.trailingAnchor.constraint(equalToConstant: 20),
+//                                         $0.leadingAnchor.constraint(equalToConstant: 20),
+//                                         $0.heightAnchor.constraint(equalToConstant: 117)
+//                                        ])
+//            stackview.addArrangedSubview($0)
+//        }
     }
     
     // 구조 : rootview > scrollview > contentview > stackview > elementview
-    var contentview: UIView { // contentview만 uiview인 이유?
-        let view = UIView(frame: .init(origin: .zero, size: .init()))
-        view.backgroundColor = .black
-        // view.layer.cornerRadius = 0
-        // view.clipsToBounds = true
-        return view
-    }
-    
-    var scrollview: UIScrollView = {
-        let view = UIScrollView(frame: .init(origin: .zero, size: .init()))
-        view.backgroundColor = .black
+    // contentview만 uiview인 이유?
+    var contentview: UIView = {
+        let view = UIView()
         return view
     }()
     
-    var topview: UIView = { // 홈화면 상단바 생성자에 검색바 + 텍스트 '날씨' + 설정버튼 다 넣는법 OR setlayout()에서 세 요소 다 합치는 방법
+    var scrollview: UIScrollView = {
+        let view = UIScrollView()
+        view.alwaysBounceVertical = true
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    // 홈화면 상단바 생성자에 검색바 + 텍스트 '날씨' + 설정버튼 다 넣는법 OR setlayout()에서 세 요소 다 합치는 방법
+    var topview: UIView = {
         let view = UIView(frame: .init(origin: .zero, size: .init()))
-        view.backgroundColor = .black
         return view
     }()
     
     var stackview: UIStackView = {
-        let view = UIStackView(frame: .init(origin: .zero, size: .init()))
-        view.backgroundColor = .black
+        let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.spacing = 20
         return view
     }()
     
     // 날씨 '나의 위치' 박스 ImageView -> 'weatherinfo.swift' 파일로 이동할 예정임.
-    var elementview: UIImageView = { // 이 클로저가 정확히 수행하는 일 : uiview를 상속받는 객체를 호출될 때마다 생성?
-        let view = UIImageView(frame: .init(origin: .zero, size: .init())) // 생성자 전달 인자 없이
-        view.image = UIImage(named: "elementviewimg")
-        view.contentMode = .scaleAspectFit
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 3
-        
-        // element 뷰를 클릭하면 상세보기 화면으로 변환된다.
-//        let tap = UITapGestureRecognizer(target: view, action: #selector(pushToDetailVC(_:))) // UIImageView 클릭 제스쳐
-//        view.addGestureRecognizer(tap)
-//        view.isUserInteractionEnabled = true
-        
-        // element 뷰 속에 텍스트들 추가
-        let text = UILabel(frame: .init(origin: .zero, size: .init()))
-        text.text = "나의 위치"
-        text.textColor = .white
-        NSLayoutConstraint.activate([text.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
-                                     // text.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-                                     text.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                                     text.heightAnchor.constraint(equalToConstant: 10)
-                                    ])
-        
-        return view
-    }()
+//    var elementview: UIImageView = { // 이 클로저가 정확히 수행하는 일 : uiview를 상속받는 객체를 호출될 때마다 생성?
+//        let view = UIImageView(frame: .init(origin: .zero, size: .init())) // 생성자 전달 인자 없이
+//        view.image = UIImage(named: "elementviewimg")
+//        view.contentMode = .scaleAspectFit
+//        view.backgroundColor = .black
+//        view.layer.cornerRadius = 3
+//        
+//        // element 뷰를 클릭하면 상세보기 화면으로 변환된다.
+////        let tap = UITapGestureRecognizer(target: view, action: #selector(pushToDetailVC(_:))) // UIImageView 클릭 제스쳐
+////        view.addGestureRecognizer(tap)
+////        view.isUserInteractionEnabled = true
+//        
+//        // element 뷰 속에 텍스트들 추가
+//        let text = UILabel(frame: .init(origin: .zero, size: .init()))
+//        text.text = "나의 위치"
+//        text.textColor = .white
+//        NSLayoutConstraint.activate([text.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
+//                                     // text.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
+//                                     text.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//                                     text.heightAnchor.constraint(equalToConstant: 10)
+//                                    ])
+//        
+//        return view
+//    }()
     
     // 검색창을 topview 클로저 안에 선언하는 방법은 없을까?
     var searchbar: UISearchBar = { // 이 클로저의 정체는 property initializer
@@ -187,14 +195,7 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
         }
         return view
     }()
-    
-    // 네비게이션컨트롤러로 푸시
-//    @objc
-//    func pushToDetailVC(_ gesture: UITapGestureRecognizer) {
-//        let resultVC = SecondViewController()
-//        self.navigationController?.pushViewController(resultVC, animated: true)
-//    }
-    
+      
     func weatherInfoViewTapped(_ weatherinfo: weatherinfo) {
         guard let location = weatherinfo.locationlabel.text,
               let weather = weatherinfo.weatherlabel.text,

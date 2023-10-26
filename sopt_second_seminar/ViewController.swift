@@ -24,13 +24,10 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
             self.view.addSubview($0)
         }
         
-        scrollview.addSubview(contentview)
-        contentview.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
                                      topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                                      topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     topview.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 150)
+                                     topview.heightAnchor.constraint(equalToConstant: 150)
                                     ])
         
         // topview 안에 날씨라벨 + 검색바 + 설정버튼
@@ -62,6 +59,8 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
                                      scrollview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
                                     ])
         
+        scrollview.addSubview(contentview)
+        contentview.translatesAutoresizingMaskIntoConstraints = false
         // contentview 높이를 scrollview 높이에 맞춰줌
         NSLayoutConstraint.activate([contentview.leadingAnchor.constraint(equalTo: scrollview.contentLayoutGuide.leadingAnchor),
                                      contentview.trailingAnchor.constraint(equalTo: scrollview.contentLayoutGuide.trailingAnchor),
@@ -76,12 +75,11 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
         
         contentview.addSubview(stackview)
         stackview.translatesAutoresizingMaskIntoConstraints = false
-        
         // self를 사용할 때와 사용하지 않을때?, contentLayoutGuide란?
-        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: self.contentview.bottomAnchor),
-                                     stackview.trailingAnchor.constraint(equalTo: self.contentview.trailingAnchor),
-                                     stackview.leadingAnchor.constraint(equalTo: self.contentview.leadingAnchor),
-                                     stackview.heightAnchor.constraint(equalTo: self.contentview.heightAnchor)
+        NSLayoutConstraint.activate([stackview.topAnchor.constraint(equalTo: contentview.topAnchor),
+                                     stackview.trailingAnchor.constraint(equalTo: contentview.trailingAnchor),
+                                     stackview.leadingAnchor.constraint(equalTo: contentview.leadingAnchor),
+                                     stackview.bottomAnchor.constraint(equalTo: contentview.bottomAnchor)
                                     ])
         
         //        stackview.addArrangedSubview(newyork)

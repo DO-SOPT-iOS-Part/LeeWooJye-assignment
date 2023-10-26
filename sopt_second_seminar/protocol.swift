@@ -11,10 +11,10 @@ protocol WeatherInfoViewDelegate: AnyObject {
     func weatherInfoViewTapped(_ weatherinfo: weatherinfo)
 }
 
-protocol labelset: AnyObject {
-    var location: String {get set}
-    var temperature: String {get set}
-    var maxtemp: String {get set}
-    var mintemp: String {get set}
-    var weather: String {get set}
-}
+//protocol labelset: AnyObject {
+//    var location: String {get set}
+//    var temperature: String {get set}
+//    var maxtemp: String {get set}
+//    var mintemp: String {get set}
+//    var weather: String {get set}
+//}

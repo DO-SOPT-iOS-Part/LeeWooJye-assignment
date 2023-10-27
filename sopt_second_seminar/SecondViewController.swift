@@ -113,6 +113,12 @@ class SecondViewController: UIViewController {
                                     box.trailingAnchor.constraint(equalTo: contentview.trailingAnchor, constant: -17),
                                     box.heightAnchor.constraint(equalToConstant: 212)
                                     ])
+        bottomview.addSubview(listbar)
+        listbar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([listbar.centerYAnchor.constraint(equalTo: bottomview.centerYAnchor),
+                                     listbar.trailingAnchor.constraint(equalTo: bottomview.trailingAnchor, constant: -30)
+        ])
+        listbar.addTarget(self, action: #selector(popDetailVC(_:)), for: .touchUpInside)
     }
     
     // 위치, 온도, 날씨, 최고최저기온으로 구성
@@ -149,7 +155,7 @@ class SecondViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
-        NSLayoutConstraint.activate([location.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+        NSLayoutConstraint.activate([location.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
                                      location.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         NSLayoutConstraint.activate([temperature.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 10),
@@ -231,36 +237,41 @@ class SecondViewController: UIViewController {
     
     // 하단바
     // 아래 클로저는 UIView 객체인 buttomview의 기능을 확장하는 것인가..?
-    var bottomview: UIView = {
+    lazy var bottomview: UIView = {
         let view = UIView()
-        
+        let line = UIView()
+        line.backgroundColor = .white
         // 설정 버튼
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "listbar"), for: .normal)
-        // 설정 버튼 눌리면 상세페이지 pop
-        let tap = UITapGestureRecognizer(target: button, action: #selector(popDetailVC(_:)))
-        view.addGestureRecognizer(tap)
-        view.isUserInteractionEnabled = true
-        
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "listbar"), for: .normal)
+//        // 설정 버튼 눌리면 상세페이지 pop
+//        button.addTarget(button, action: #selector(popDetailVC()), for: .touchUpInside)
+//        view.addGestureRecognizer(tap)
+//        view.isUserInteractionEnabled = true
         // 지도 버튼
         let mapbutton = UIButton()
-        mapbutton.setImage(UIImage(systemName: "map"), for: .normal)
+        mapbutton.setImage(UIImage(named: "map"), for: .normal)
         // 화살표 버튼
         let arrow = UIButton()
-        arrow.setImage(UIImage(systemName: "arrow"), for: .normal)
+        arrow.setImage(UIImage(named: "arrow"), for: .normal)
         // 점 하나 버튼
         let dot = UIButton()
-        dot.setImage(UIImage(systemName: "dot"), for: .normal)
+        dot.setImage(UIImage(named: "dot"), for: .normal)
         
-        [button, mapbutton, arrow, dot].forEach {
+        [mapbutton, arrow, dot, line].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
-        NSLayoutConstraint.activate([button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-                                    ])
+        NSLayoutConstraint.activate([line.topAnchor.constraint(equalTo: view.topAnchor),
+                                     line.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     line.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     line.heightAnchor.constraint(equalToConstant: 0.3)
+        ])
+//        NSLayoutConstraint.activate([button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//                                     button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+//                                    ])
         NSLayoutConstraint.activate([mapbutton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     mapbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+                                     mapbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
                                     ])
         NSLayoutConstraint.activate([arrow.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      arrow.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10)
@@ -269,6 +280,12 @@ class SecondViewController: UIViewController {
                                      dot.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10)
                                     ])
         return view
+    }()
+    
+    var listbar: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "listbar"), for: .normal)
+        return button
     }()
     
     // 디폴트 배경화면 지정
@@ -280,8 +297,13 @@ class SecondViewController: UIViewController {
     }
     
     // 홈 화면으로 화면 전환
+//    @objc
+//    func popDetailVC(_ gesture: UITapGestureRecognizer) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
+    
     @objc
-    func popDetailVC(_ gesture: UITapGestureRecognizer) {
+    func popDetailVC(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }

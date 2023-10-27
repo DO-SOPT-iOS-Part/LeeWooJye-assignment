@@ -53,7 +53,7 @@ class weatherinfo: UIView {
         let mylocation = UILabel()
         mylocation.text = "나의 위치"
         mylocation.textColor = .white
-        mylocation.font = UIFont(name: "SFProDisplay-Medium", size: 25)
+        mylocation.font = UIFont(name: "SFProDisplay-Bold", size: 25)
         return mylocation
     }()
     
@@ -61,7 +61,7 @@ class weatherinfo: UIView {
         let temperature = UILabel()
         temperature.textColor = .white
         temperature.text = self.Temperature
-        temperature.font = UIFont(name: "SFProDisplay-Medium", size: 52)
+        temperature.font = UIFont(name: "SFProDisplay-Light", size: 52)
         return temperature
     }()
     

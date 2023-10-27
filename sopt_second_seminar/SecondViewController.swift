@@ -41,10 +41,15 @@ class SecondViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
-        let timeline1 = timeline(time: "Now", weather: "cloudy", temperature: "18C")
-        // let timeline1 = timeline(time: "0", weather: self.Weather, temperature: self.Temperature)
+        
+        let timeline1 = timeline(time: "Now", weather: "cloudy", temperature: "18°C")
+        var views = [timeline]()
+        for i in 1..<10 {
+            let view = timeline(time: "\(i)시", weather: "cloudy", temperature: "18°C")
+            views.append(view)
+        }
 
-        [timeline1].forEach {
+        views.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             ($0.widthAnchor.constraint(equalToConstant: 65)).isActive = true
             ($0.heightAnchor.constraint(equalToConstant: 105)).isActive = true
@@ -57,19 +62,21 @@ class SecondViewController: UIViewController {
         scrollview2.translatesAutoresizingMaskIntoConstraints = false
         detailview.translatesAutoresizingMaskIntoConstraints = false
         box.translatesAutoresizingMaskIntoConstraints = false
+        contentview2.translatesAutoresizingMaskIntoConstraints = false
         
         // scrollview 하위뷰에 꼭 contentview가 와야하나? -> 노
         scrollview.addSubview(contentview)
         box.addSubview(scrollview2)
-        scrollview2.addSubview(detailview)
         box.addSubview(lineView)
         box.addSubview(descriptionView)
         contentview.addSubview(box)
+        scrollview2.addSubview(contentview2)
+        contentview2.addSubview(detailview)
                 
         NSLayoutConstraint.activate([topview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
                                      topview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
                                      topview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-                                     topview.heightAnchor.constraint(equalToConstant: 212)
+                                     topview.heightAnchor.constraint(equalToConstant: 250)
                                     ])
         NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: topview.bottomAnchor, constant: 0),
                                      scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
@@ -102,10 +109,20 @@ class SecondViewController: UIViewController {
                                      scrollview2.leadingAnchor.constraint(equalTo: box.leadingAnchor),
                                      scrollview2.bottomAnchor.constraint(equalTo: box.bottomAnchor)
                                     ])
-        NSLayoutConstraint.activate([detailview.topAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.topAnchor),
-                                     detailview.trailingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.trailingAnchor),
-                                     detailview.leadingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.leadingAnchor),
-                                     detailview.bottomAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.bottomAnchor)
+        NSLayoutConstraint.activate([contentview2.topAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.topAnchor),
+                                     contentview2.leadingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.leadingAnchor),
+                                     contentview2.trailingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.trailingAnchor),
+                                     contentview2.bottomAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.bottomAnchor)
+        ])
+          //contentview2.heightAnchor.constraint(equalTo: scrollview2.heightAnchor).isActive = true
+        let contentViewHeight = contentview2.widthAnchor.constraint(greaterThanOrEqualTo: view.widthAnchor)
+        contentViewHeight.priority = .defaultLow
+        contentViewHeight.isActive = true
+        
+        NSLayoutConstraint.activate([detailview.topAnchor.constraint(equalTo: contentview2.topAnchor),
+                                     detailview.trailingAnchor.constraint(equalTo: contentview2.trailingAnchor),
+                                     detailview.leadingAnchor.constraint(equalTo: contentview2.leadingAnchor),
+                                     detailview.bottomAnchor.constraint(equalTo: contentview2.bottomAnchor)
                                     ])
         NSLayoutConstraint.activate([
                                     box.topAnchor.constraint(equalTo: contentview.topAnchor, constant: 50),
@@ -120,6 +137,8 @@ class SecondViewController: UIViewController {
         ])
         listbar.addTarget(self, action: #selector(popDetailVC(_:)), for: .touchUpInside)
     }
+    
+    let contentview2 = UIView()
     
     // 위치, 온도, 날씨, 최고최저기온으로 구성
     // 키워드 lazy -> lazy 키워드를 붙여서 프로퍼티를 선언하면 단어 뜻 그대로 다른 프로퍼티보다 지연된다. 즉, 해당 프로퍼티가 처음 사용되기 전까지는 메모리에 올라가지 않는다.
@@ -185,9 +204,6 @@ class SecondViewController: UIViewController {
     // 상세보기 박스에서 상단은 text뷰, 하단은 수평스크롤뷰 > 콘텐츠뷰 > 수평스택뷰 > 개별 UI뷰
     var contentview: UIView = {
         let view = UIView()
-//        view.layer.cornerRadius = 10
-//        view.layer.borderColor = UIColor.white.cgColor
-//        view.layer.borderWidth = 1
         return view
     }()
     
@@ -216,7 +232,7 @@ class SecondViewController: UIViewController {
     
     var scrollview2: UIScrollView = { // 수평스크롤뷰
         let view = UIScrollView()
-        view.showsHorizontalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = true
         return view
     }()
     var detailview: UIStackView = { // 수평스택뷰
@@ -227,27 +243,19 @@ class SecondViewController: UIViewController {
         return view
     }()
     
-    // 기상 상태 아이콘으로 표시되는 곳 - 시간/기상아이콘/온도
-//    var weatherview: UIImageView = {
-//        let view = UIImageView(frame: .init(origin: .zero, size: .init()))
-//        view.layer.cornerRadius = 3
-//        view.clipsToBounds = false
-//        return view
-//    }()
-    
     // 하단바
     // 아래 클로저는 UIView 객체인 buttomview의 기능을 확장하는 것인가..?
     lazy var bottomview: UIView = {
         let view = UIView()
         let line = UIView()
         line.backgroundColor = .white
-        // 설정 버튼
 //        let button = UIButton()
 //        button.setImage(UIImage(named: "listbar"), for: .normal)
 //        // 설정 버튼 눌리면 상세페이지 pop
 //        button.addTarget(button, action: #selector(popDetailVC()), for: .touchUpInside)
 //        view.addGestureRecognizer(tap)
 //        view.isUserInteractionEnabled = true
+        
         // 지도 버튼
         let mapbutton = UIButton()
         mapbutton.setImage(UIImage(named: "map"), for: .normal)
@@ -267,9 +275,6 @@ class SecondViewController: UIViewController {
                                      line.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      line.heightAnchor.constraint(equalToConstant: 0.3)
         ])
-//        NSLayoutConstraint.activate([button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//                                     button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
-//                                    ])
         NSLayoutConstraint.activate([mapbutton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      mapbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
                                     ])
@@ -282,6 +287,7 @@ class SecondViewController: UIViewController {
         return view
     }()
     
+    // backbutton
     var listbar: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "listbar"), for: .normal)
@@ -295,12 +301,6 @@ class SecondViewController: UIViewController {
         backgroundImageView.frame = view.bounds
         self.view.insertSubview(backgroundImageView, at: 0)
     }
-    
-    // 홈 화면으로 화면 전환
-//    @objc
-//    func popDetailVC(_ gesture: UITapGestureRecognizer) {
-//        self.navigationController?.popViewController(animated: true)
-//    }
     
     @objc
     func popDetailVC(_ sender: UIButton) {

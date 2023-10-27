@@ -114,10 +114,14 @@ class SecondViewController: UIViewController {
                                      contentview2.trailingAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.trailingAnchor),
                                      contentview2.bottomAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.bottomAnchor)
         ])
-          //contentview2.heightAnchor.constraint(equalTo: scrollview2.heightAnchor).isActive = true
-        let contentViewHeight = contentview2.widthAnchor.constraint(greaterThanOrEqualTo: view.widthAnchor)
-        contentViewHeight.priority = .defaultLow
-        contentViewHeight.isActive = true
+        
+         // contentview2.heightAnchor.constraint(equalTo: scrollview2.heightAnchor).isActive = true
+        // let contentViewHeight = contentview2.widthAnchor.constraint(greaterThanOrEqualTo: view.widthAnchor)
+//        contentViewHeight.priority = .defaultLow
+//        contentViewHeight.isActive = true
+        // scrollview2.contentSize = contentview2.frame.size
+//        contentview2.widthAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.widthAnchor).isActive = true
+//        contentview2.heightAnchor.constraint(equalTo: scrollview2.contentLayoutGuide.heightAnchor).isActive = true
         
         NSLayoutConstraint.activate([detailview.topAnchor.constraint(equalTo: contentview2.topAnchor),
                                      detailview.trailingAnchor.constraint(equalTo: contentview2.trailingAnchor),
@@ -232,7 +236,7 @@ class SecondViewController: UIViewController {
     
     var scrollview2: UIScrollView = { // 수평스크롤뷰
         let view = UIScrollView()
-        view.showsHorizontalScrollIndicator = true
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     var detailview: UIStackView = { // 수평스택뷰

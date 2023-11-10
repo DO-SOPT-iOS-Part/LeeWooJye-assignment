@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>36</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>35</string>
+					<key>Timestamp</key>
+					<string>721299544.881958</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/WeatherTableViewCell.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>//        NSLayoutConstraint.activate([self.heightAnchor.constraint(equalToConstant: 60)
+</string>
+				<key>leading</key>
+				<string>    private func setLayout() {
+        // cell높이 정해줌..**
+</string>
+				<key>trailing</key>
+				<string>//        ])
+        
+        [dayLabel, image, min, max, barImage].forEach() {
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>65</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>64</string>
+					<key>Timestamp</key>
+					<string>721303478.8398449</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        NSLayoutConstraint.activate([contentview2.topAnchor.constraint(equalTo: scrollview.contentLayoutGuide.topAnchor),
+</string>
+				<key>leading</key>
+				<string>        }
+        // problem..**
+</string>
+				<key>trailing</key>
+				<string>                                     contentview2.bottomAnchor.constraint(equalTo: scrollview.contentLayoutGuide.bottomAnchor),
+                                     contentview2.heightAnchor.constraint(equalToConstant: 1070),
+                                     contentview2.widthAnchor.constraint(equalTo: scrollview.widthAnchor),
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>26</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>25</string>
+					<key>Timestamp</key>
+					<string>721275260.314952</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/ViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        self.tableView.rowHeight = 117
+</string>
+				<key>leading</key>
+				<string>        self.tableView.delegate = self
+        self.tableView.dataSource = self
+</string>
+				<key>trailing</key>
+				<string>        self.tableView.separatorStyle = .none
+    }
+    
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>405</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>404</string>
+					<key>Timestamp</key>
+					<string>721303750.65803</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        cell.bindData(data: weatherListData[indexPath.row])
+</string>
+				<key>leading</key>
+				<string>        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier,
+                                                       for: indexPath) as? WeatherTableViewCell else {return UITableViewCell()}
+</string>
+				<key>trailing</key>
+				<string>        return cell
+    }
+}
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>407</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>406</string>
+					<key>Timestamp</key>
+					<string>721303750.658051</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    }
+</string>
+				<key>leading</key>
+				<string>        cell.bindData(data: weatherListData[indexPath.row])
+        return cell
+</string>
+				<key>trailing</key>
+				<string>}
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>365</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>364</string>
+					<key>Timestamp</key>
+					<string>721303750.658061</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        // $0.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+</string>
+				<key>leading</key>
+				<string>        $0.showsVerticalScrollIndicator = false
+        $0.isScrollEnabled = false
+</string>
+				<key>trailing</key>
+				<string>    }
+
+}
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>95</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>94</string>
+					<key>Timestamp</key>
+					<string>721303478.839862</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>                                    box.topAnchor.constraint(equalTo: topview.bottomAnchor, constant: 20),
+</string>
+				<key>leading</key>
+				<string>                                    ])
+        NSLayoutConstraint.activate([
+</string>
+				<key>trailing</key>
+				<string>                                    box.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 17),
+                                    box.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -17),
+                                    box.heightAnchor.constraint(equalToConstant: 212)
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>147</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>146</string>
+					<key>Timestamp</key>
+					<string>721303750.65807</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>                                     box2.heightAnchor.constraint(equalToConstant: 650)
+</string>
+				<key>leading</key>
+				<string>                                     box2.leadingAnchor.constraint(equalTo: box.leadingAnchor),
+                                     box2.trailingAnchor.constraint(equalTo: box.trailingAnchor),
+</string>
+				<key>trailing</key>
+				<string>        ])
+        NSLayoutConstraint.activate([icon.leadingAnchor.constraint(equalTo: box2.leadingAnchor, constant: 10),
+                                     icon.centerYAnchor.constraint(equalTo: label2.centerYAnchor)
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>54</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>53</string>
+					<key>Timestamp</key>
+					<string>721300811.390166</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        NSLayoutConstraint.activate([scrollview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+</string>
+				<key>leading</key>
+				<string>        scrollview.addSubview(topview)
+        
+//</string>
+				<key>trailing</key>
+				<string>//                                     scrollview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+//                                     scrollview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+//                                     scrollview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>48</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>47</string>
+					<key>Timestamp</key>
+					<string>721301326.638343</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_third_seminar/ViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    private let tableView = UITableView(frame: .init(), style: .grouped).then {
+</string>
+				<key>leading</key>
+				<string>    
+    // tableView 이니셜라이저 인자에 값이 있어도 setLayout()에서 다시 설정해주니 괜찮은건가?..**
+</string>
+				<key>trailing</key>
+				<string>        $0.backgroundColor = .black
+        $0.separatorColor = .black
+        $0.separatorStyle = .none
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+	</array>
+</dict>
+</plist>

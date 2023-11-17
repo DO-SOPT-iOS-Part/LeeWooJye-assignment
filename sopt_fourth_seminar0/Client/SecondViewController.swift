@@ -51,7 +51,28 @@ class SecondViewController: UIViewController {
                 print(error)
             }
         }
+        
+        do {
+            guard let currentWeather = try await GetTimeline.shared.GetTimelineData(cityname: city) else {return}
+            guard let time = extractHour(from: currentWeather.list[0].dtTxt) else {return}
+            self.descriptionView.text = "\(String(describing: time))에 \(self.Weather) 상태가 예상됩니다."
+        } catch {
+            print(error)
+        }
         collectionview.reloadData()
+    }
+    
+    func extractHour(from dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            let calendar = Calendar.current
+            let hour = calendar.component(.hour, from: date)
+            return String(format: "%02d:00~%02d:00", hour, hour+3)
+        }
+        
+        return nil
     }
     
     private func setLayout() {
@@ -263,9 +284,9 @@ class SecondViewController: UIViewController {
         return view
     }()
     
-    private let descriptionView: UILabel = {
+    lazy var descriptionView: UILabel = {
         let label = UILabel()
-        label.text = "08:00~09:00에 강우 상태가, 18:00에 한때 흐린 상태가 예상됩니다."
+        // label.text = "08:00~09:00에 강우 상태가, 18:00에 한때 흐린 상태가 예상됩니다."
         label.numberOfLines = 0
         label.textColor = .white
         label.font = UIFont(name: "SFProDisplay-Regular", size: 17)

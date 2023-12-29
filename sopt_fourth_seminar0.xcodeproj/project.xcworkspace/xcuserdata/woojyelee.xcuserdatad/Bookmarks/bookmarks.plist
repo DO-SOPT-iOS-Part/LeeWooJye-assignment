@@ -184,6 +184,141 @@
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>211</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>210</string>
+					<key>Timestamp</key>
+					<string>724230312.0786999</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_fourth_seminar0/Client/View/SecondViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        self.collectionview.dataSource = viewmodel as! any UICollectionViewDataSource
+</string>
+				<key>leading</key>
+				<string>                                        forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        self.collectionview.delegate = self
+</string>
+				<key>trailing</key>
+				<string>    }
+    private func setCollectionViewLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>25</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>24</string>
+					<key>Timestamp</key>
+					<string>724229567.732389</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_fourth_seminar0/Client/ViewModel/VCViewModel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        cell.delegate = ViewController()
+</string>
+				<key>leading</key>
+				<string>        guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemListTableViewCell.identifier,
+                                                       for: indexPath) as? ItemListTableViewCell else {return UITableViewCell()}
+</string>
+				<key>trailing</key>
+				<string>        cell.bindData(data: itemListData[indexPath.row])
+        
+        return cell
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>139</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>138</string>
+					<key>Timestamp</key>
+					<string>724337267.481658</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>sopt_fourth_seminar0/Client/View/ViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        self.navigationController?.pushViewController(weatherDetailedInfoVC, animated: true)
+</string>
+				<key>leading</key>
+				<string>        let weatherDetailedInfoVC = SecondViewController(location: location, temperature: temperature, weather: weather, maxtemp: maxtemp, mintemp: mintemp)
+        
+</string>
+				<key>trailing</key>
+				<string>        self.navigationController?.isNavigationBarHidden = true
+    }
+
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>

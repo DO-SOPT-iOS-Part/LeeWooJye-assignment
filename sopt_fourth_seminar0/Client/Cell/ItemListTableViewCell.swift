@@ -1,3 +1,9 @@
+//
+//  sopt_fourth_seminar0
+//
+//  Created by Woo Jye Lee on 11/15/23.
+//
+
 import UIKit
 import SnapKit
 import Then
@@ -5,7 +11,7 @@ import Then
 class ItemListTableViewCell: UITableViewCell {
     
     static let identifier: String = "ItemListTableViewCell"
-    weak var delegate: WeatherInfoViewDelegate?
+    var delegate: WeatherInfoViewDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,7 +32,6 @@ class ItemListTableViewCell: UITableViewCell {
         self.weatherLabel.text = data.weather
     }
     
-    // tableviewcell 내에 UItableviewcell contentview가 있음
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))

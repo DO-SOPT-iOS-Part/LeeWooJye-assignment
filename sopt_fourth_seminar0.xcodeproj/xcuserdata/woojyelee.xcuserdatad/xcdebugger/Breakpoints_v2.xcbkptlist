@@ -3,4 +3,118 @@
    uuid = "8C5937F2-2A36-4C62-9B62-965E9C2E3B79"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4098C38D-76E8-40A9-AED4-0A547DC8CC6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sopt_fourth_seminar0/Client/Cell/ItemListTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "handleTap(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4098C38D-76E8-40A9-AED4-0A547DC8CC6B - ea7dc8def31c2aae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sopt_fourth_seminar0.ItemListTableViewCell.handleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "sopt_fourth_seminar0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woojyelee/Xcodeworkspace/sopt_fourth_seminar0/sopt_fourth_seminar0/Client/Cell/ItemListTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "4098C38D-76E8-40A9-AED4-0A547DC8CC6B - ea7dc8def31c2a64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sopt_fourth_seminar0.ItemListTableViewCell.handleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "sopt_fourth_seminar0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woojyelee/Xcodeworkspace/sopt_fourth_seminar0/sopt_fourth_seminar0/Client/Cell/ItemListTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6359B50B-624D-4E10-94E7-CB7B23898945"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sopt_fourth_seminar0/Client/View/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "weatherInfoViewTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6359B50B-624D-4E10-94E7-CB7B23898945 - c7fdd09bf8499c5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sopt_fourth_seminar0.ViewController.weatherInfoViewTapped(sopt_fourth_seminar0.ItemListTableViewCell) -&gt; ()"
+                  moduleName = "sopt_fourth_seminar0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woojyelee/Xcodeworkspace/sopt_fourth_seminar0/sopt_fourth_seminar0/Client/View/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "6359B50B-624D-4E10-94E7-CB7B23898945 - c7fdd09bf8499395"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sopt_fourth_seminar0.ViewController.weatherInfoViewTapped(sopt_fourth_seminar0.ItemListTableViewCell) -&gt; ()"
+                  moduleName = "sopt_fourth_seminar0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woojyelee/Xcodeworkspace/sopt_fourth_seminar0/sopt_fourth_seminar0/Client/View/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "443416A9-720B-4FA5-808D-D44033206E96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sopt_fourth_seminar0/Client/Cell/ItemListTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "handleTap(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

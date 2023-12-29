@@ -1,13 +1,22 @@
+//
+//  sopt_fourth_seminar0
+//
+//  Created by Woo Jye Lee on 11/15/23.
+//
+
 import UIKit
 import SnapKit
 import Then
 
 class SecondViewController: UIViewController {
+    
     var Location: String
     var Temperature: String
     var Maxtemp: String
     var Mintemp: String
     var Weather: String
+    
+    var viewmodel = SecondVCViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,9 +208,8 @@ class SecondViewController: UIViewController {
         self.collectionview.register(ImageCollectionViewCell.self,
                                         forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.collectionview.delegate = self
-        self.collectionview.dataSource = self
+        self.collectionview.dataSource = viewmodel as! any UICollectionViewDataSource
     }
-    // 1x3 레이아웃은 어디서 설정해 주어야 하는지?
     private func setCollectionViewLayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -286,7 +294,6 @@ class SecondViewController: UIViewController {
     
     lazy var descriptionView: UILabel = {
         let label = UILabel()
-        // label.text = "08:00~09:00에 강우 상태가, 18:00에 한때 흐린 상태가 예상됩니다."
         label.numberOfLines = 0
         label.textColor = .white
         label.font = UIFont(name: "SFProDisplay-Regular", size: 17)
@@ -344,7 +351,6 @@ class SecondViewController: UIViewController {
     private let collectionview = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let collectionview2 = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    // box 객체를 두번이상 선언하지 않고 한번에 해결하는법은..? -> compositional layout
     var box2: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
@@ -354,7 +360,6 @@ class SecondViewController: UIViewController {
         return view
     }()
     
-    // UIView 대신 콜렉션뷰 헤더로 라벨 채울수있을까..?
     private func setBackgroundImage() {
         let backgroundImageView = UIImageView(image: UIImage(named: "large_background"))
         backgroundImageView.contentMode = .scaleAspectFill
@@ -385,18 +390,6 @@ class SecondViewController: UIViewController {
 }
 // 수평스크롤 컬렉션뷰
 extension SecondViewController: UICollectionViewDelegate {}
-extension SecondViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageCollectionList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier,
-                                                            for: indexPath) as? ImageCollectionViewCell else {return UICollectionViewCell()}
-        item.bindData(data: imageCollectionList[indexPath.row])
-        return item
-    }
-}
 extension SecondViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3
@@ -409,8 +402,7 @@ extension SecondViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 // 일주일 날씨보여주는 테이블뷰
-extension SecondViewController: UITableViewDelegate {
-}
+extension SecondViewController: UITableViewDelegate {}
 extension SecondViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherListData.count

@@ -1,3 +1,9 @@
+//
+//  sopt_fourth_seminar0
+//
+//  Created by Woo Jye Lee on 11/15/23.
+//
+
 import UIKit
 import SnapKit
 import Then
@@ -5,6 +11,7 @@ import Then
 class ViewController: UIViewController, WeatherInfoViewDelegate {
     
     var searchWeatherInfoListData = itemListData
+    var viewmodel = VCViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +27,8 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
         self.tableView.register(ItemListTableViewCell.self,
                                 forCellReuseIdentifier: ItemListTableViewCell.identifier)
         self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.rowHeight = 135 // 세로길이 늘리니까 셀 간격 생김.. 이게 왜?
+        self.tableView.dataSource = viewmodel
+        self.tableView.rowHeight = 135
         self.tableView.separatorStyle = .none
     }
     
@@ -59,7 +66,6 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
         ])
     }
     
-    // tableView 이니셜라이저 인자에 값이 있어도 setLayout()에서 다시 설정해주니 괜찮은건가?..**
     private let tableView = UITableView(frame: .init(), style: .grouped).then {
         $0.backgroundColor = .black
         $0.separatorColor = .black
@@ -136,19 +142,4 @@ class ViewController: UIViewController, WeatherInfoViewDelegate {
 
 }
 
-// 첫 함수가 cell의 개수를 반환하고 그 cell 개수를 바탕으로 두 번째 함수를 반복..?
 extension ViewController: UITableViewDelegate {}
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemListData.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemListTableViewCell.identifier,
-                                                       for: indexPath) as? ItemListTableViewCell else {return UITableViewCell()}
-        cell.delegate = self
-        cell.bindData(data: itemListData[indexPath.row])
-        
-        return cell
-    }
-}
-
